@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_landing_image_sections",
+  "info": {
+    "displayName": "Image section"
+  },
+  "options": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

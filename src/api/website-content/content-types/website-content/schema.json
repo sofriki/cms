@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "website_contents",
+  "info": {
+    "singularName": "website-content",
+    "pluralName": "website-contents",
+    "displayName": "Website Content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "headerLogo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "aboutUs": {
+      "type": "dynamiczone",
+      "components": [
+        "landing.about-us",
+        "landing.image-section",
+        "landing.divider"
+      ]
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "subtitle": {
+      "type": "text"
+    }
+  }
+}

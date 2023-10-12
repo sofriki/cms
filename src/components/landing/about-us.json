@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_landing_about_uses",
+  "info": {
+    "displayName": "Text Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_landing_dividers",
+  "info": {
+    "displayName": "Divider"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}
