@@ -1,59 +1,72 @@
-version: "3"
+version: '3'
 services:
-  strapi:
-    container_name: strapi
+  sofriki-cms:
+    container_name: sofriki-cms
     build: .
-    image: strapi:latest
+    image: sofriki-cms:latest
     restart: unless-stopped
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: strapiDB
-      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_HOST: sofriki-cmsDB
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      APP_KEYS: ${APP_KEYS}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${NODE_ENV}
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/package.json
       - ./yarn.lock:/opt/yarn.lock
+
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
     ports:
-      - "1337:1337"
+      - '1337:1337'
     networks:
-      - strapi
+      - sofriki-cms
     depends_on:
-      - strapiDB
-
-  strapiDB:
-    container_name: strapiDB
+      - sofriki-cmsDB
+      
+  sofriki-cmsDB:
+    container_name: sofriki-cmsDB
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
     env_file: .env
-    image: postgres:12.0-alpine
+    image: postgres:14.5-alpine
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
-      - strapi-data:/var/lib/postgresql/data/ #using a volume
+      - sofriki-cms-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
 
     ports:
-      - "5656:5656"
+      - '5656:5656'
     networks:
-      - strapi
+      - sofriki-cms
+      
+  sofriki-cmsAdminer:
+    container_name: sofriki-cmsAdminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - '9090:8080'
+    environment:
+      - ADMINER_DEFAULT_SERVER=sofriki-cmsDB
+    networks:
+      - sofriki-cms
+    depends_on:
+      - sofriki-cmsDB
 
 volumes:
-  strapi-data:
+  sofriki-cms-data:
 
 networks:
-  strapi:
-    name: Strapi
+  sofriki-cms:
+    name: Sofriki-cms
     driver: bridge
