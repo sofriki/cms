@@ -16,13 +16,6 @@ services:
 
     ports:
       - "5656:5656"
-    networks:
-      - strapi
 
 volumes:
   strapi-data:
-
-networks:
-  strapi:
-    name: Strapi
-    driver: bridge
