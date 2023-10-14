@@ -24,10 +24,17 @@ services:
 
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
-    ports:
-      - '1337:1337'
+#    ports:
+ #     - '1337:1337'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.friki-cms.rule=Host(`cms.friki.si`)"
+      - "traefik.http.routers.friki-cms.entrypoints=https"
+      - "traefik.http.routers.friki-cms.service=friki-cms"
+      - "traefik.http.routers.friki-cms.tls.certresolver=cloudflare"
+      - "traefik.http.services.friki-cms.loadbalancer.server.port=1337"
     networks:
-      - sofriki-cms
+      - proxy
     depends_on:
       - sofriki-cmsDB
       
@@ -45,28 +52,14 @@ services:
       - sofriki-cms-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
 
-    ports:
-      - '5432:5432'
+ #   ports:
+#      - '5432:5432'
     networks:
-      - sofriki-cms
+      - proxy
       
-  sofriki-cmsAdminer:
-    container_name: sofriki-cmsAdminer
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - '9090:8080'
-    environment:
-      - ADMINER_DEFAULT_SERVER=sofriki-cmsDB
-    networks:
-      - sofriki-cms
-    depends_on:
-      - sofriki-cmsDB
-
 volumes:
   sofriki-cms-data:
 
 networks:
-  sofriki-cms:
-    name: Sofriki-cms
-    driver: bridge
+  proxy:
+    external: true
