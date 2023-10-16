@@ -752,7 +752,7 @@ export interface ApiWebsiteContentWebsiteContent extends Schema.SingleType {
         'landing.about-us',
         'landing.divider',
         'landing.image-section',
-        'landing.spacer'
+        'landing.spacer',
       ]
     >;
     createdAt: Attribute.DateTime;
