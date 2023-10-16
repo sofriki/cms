@@ -707,6 +707,40 @@ export interface ApiBannerBanner extends Schema.SingleType {
   };
 }
 
+export interface ApiGalleryGallery extends Schema.CollectionType {
+  collectionName: 'galleries';
+  info: {
+    singularName: 'gallery';
+    pluralName: 'galleries';
+    displayName: 'Gallery';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    images: Attribute.Media;
+    cover: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gallery.gallery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLinkLink extends Schema.CollectionType {
   collectionName: 'links';
   info: {
@@ -716,16 +750,41 @@ export interface ApiLinkLink extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     display: Attribute.String & Attribute.Required;
     link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::link.link', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::link.link', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUoUo extends Schema.CollectionType {
+  collectionName: 'uos';
+  info: {
+    singularName: 'uo';
+    pluralName: 'uos';
+    displayName: 'UO';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    role: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::uo.uo', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::uo.uo', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -753,6 +812,7 @@ export interface ApiWebsiteContentWebsiteContent extends Schema.SingleType {
         'landing.divider',
         'landing.image-section',
         'landing.spacer',
+        'landing.uo',
       ]
     >;
     createdAt: Attribute.DateTime;
@@ -789,7 +849,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::banner.banner': ApiBannerBanner;
+      'api::gallery.gallery': ApiGalleryGallery;
       'api::link.link': ApiLinkLink;
+      'api::uo.uo': ApiUoUo;
       'api::website-content.website-content': ApiWebsiteContentWebsiteContent;
     }
   }

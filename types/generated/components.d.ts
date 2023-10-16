@@ -61,6 +61,17 @@ export interface LandingTitle extends Schema.Component {
   };
 }
 
+export interface LandingUo extends Schema.Component {
+  collectionName: 'components_landing_uos';
+  info: {
+    displayName: 'uo';
+    description: '';
+  };
+  attributes: {
+    uos: Attribute.Relation<'landing.uo', 'oneToMany', 'api::uo.uo'>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -70,6 +81,7 @@ declare module '@strapi/types' {
       'landing.image-section': LandingImageSection;
       'landing.spacer': LandingSpacer;
       'landing.title': LandingTitle;
+      'landing.uo': LandingUo;
     }
   }
 }

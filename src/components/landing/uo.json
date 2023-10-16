@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_landing_uos",
+  "info": {
+    "displayName": "uo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "uos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::uo.uo"
+    }
+  }
+}

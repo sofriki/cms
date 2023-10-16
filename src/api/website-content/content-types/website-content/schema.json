@@ -41,7 +41,8 @@
         "landing.about-us",
         "landing.divider",
         "landing.image-section",
-        "landing.spacer"
+        "landing.spacer",
+        "landing.uo"
       ]
     }
   }
