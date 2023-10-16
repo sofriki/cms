@@ -744,11 +744,17 @@ export interface ApiWebsiteContentWebsiteContent extends Schema.SingleType {
   attributes: {
     headerLogo: Attribute.Media & Attribute.Required;
     title: Attribute.String;
-    aboutUs: Attribute.DynamicZone<
-      ['landing.about-us', 'landing.image-section', 'landing.divider']
-    >;
     heroImage: Attribute.Media;
     subtitle: Attribute.Text;
+    sections: Attribute.DynamicZone<
+      [
+        'landing.title',
+        'landing.about-us',
+        'landing.divider',
+        'landing.image-section',
+        'landing.spacer'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

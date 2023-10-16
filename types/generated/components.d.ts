@@ -43,6 +43,24 @@ export interface LandingImageSection extends Schema.Component {
   };
 }
 
+export interface LandingSpacer extends Schema.Component {
+  collectionName: 'components_landing_spacers';
+  info: {
+    displayName: 'Spacer';
+  };
+  attributes: {};
+}
+
+export interface LandingTitle extends Schema.Component {
+  collectionName: 'components_landing_titles';
+  info: {
+    displayName: 'title';
+  };
+  attributes: {
+    title: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -50,6 +68,8 @@ declare module '@strapi/types' {
       'landing.about-us': LandingAboutUs;
       'landing.divider': LandingDivider;
       'landing.image-section': LandingImageSection;
+      'landing.spacer': LandingSpacer;
+      'landing.title': LandingTitle;
     }
   }
 }

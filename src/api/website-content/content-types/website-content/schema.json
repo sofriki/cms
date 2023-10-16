@@ -23,14 +23,6 @@
     "title": {
       "type": "string"
     },
-    "aboutUs": {
-      "type": "dynamiczone",
-      "components": [
-        "landing.about-us",
-        "landing.image-section",
-        "landing.divider"
-      ]
-    },
     "heroImage": {
       "type": "media",
       "multiple": false,
@@ -41,6 +33,16 @@
     },
     "subtitle": {
       "type": "text"
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "landing.title",
+        "landing.about-us",
+        "landing.divider",
+        "landing.image-section",
+        "landing.spacer"
+      ]
     }
   }
 }
