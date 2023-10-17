@@ -778,8 +778,8 @@ export interface ApiUoUo extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    role: Attribute.String;
-    image: Attribute.Media;
+    role: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::uo.uo', 'oneToOne', 'admin::user'> &
