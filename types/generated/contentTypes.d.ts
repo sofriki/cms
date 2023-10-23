@@ -755,6 +755,7 @@ export interface ApiLinkLink extends Schema.CollectionType {
   attributes: {
     display: Attribute.String & Attribute.Required;
     link: Attribute.String & Attribute.Required;
+    cover: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -801,7 +802,6 @@ export interface ApiWebsiteContentWebsiteContent extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    headerLogo: Attribute.Media & Attribute.Required;
     title: Attribute.String;
     heroImage: Attribute.Media;
     subtitle: Attribute.Text;
